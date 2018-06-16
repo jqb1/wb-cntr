@@ -15,8 +15,7 @@ def main():
     file_handler = FileHandler(arg.counted_websites)
     websites = file_handler.read_file(arg.websites_file)
 
-    print(websites)
-
     WebsiteParser(websites)
+
 
 main()

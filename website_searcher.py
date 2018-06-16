@@ -1,5 +1,6 @@
 from urllib.request import urlopen
 import re
+from bs4 import BeautifulSoup
 
 
 class WebsiteParser:
@@ -18,4 +19,21 @@ class WebsiteParser:
             website = "http://%s/" % website
         # get html code of the website
         html = urlopen(website)
-        print(html.read().decode('utf-8'))
+
+        self.soup_read(html)
+
+        # print(html.read().decode('utf-8'))
+
+    def soup_read(self, html):
+        soup = BeautifulSoup(html.read(), "html.parser")
+
+        #count only in body
+        print(soup.body)
+        print(len(soup.find_all('button')))
+
+        regex = re.compile('submit|reset|button')
+        print(len(soup.find_all('input', {'type': regex})))
+
+        regex2 = re.compile('(?i).*btn.*|(?i).*button.*')
+        print(len(soup.find_all('form', {'class': regex2})))
+
