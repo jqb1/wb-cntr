@@ -35,5 +35,5 @@ class WebsiteParser:
         print(len(soup.find_all('input', {'type': regex})))
 
         regex2 = re.compile('(?i).*btn.*|(?i).*button.*')
-        print(len(soup.find_all('form', {'class': regex2})))
+        print(len(soup.find_all('', {'class': regex2})))
 
