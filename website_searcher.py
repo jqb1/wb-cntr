@@ -14,10 +14,14 @@ class WebsiteParser:
 
     def get_html(self, website):
         website_data = {}
+
+        if website == 'localhost':
+            website = 'localhost:8000/localhost_template.html'
+
         # checking the link structure
         m = re.match(r"http.:", website)
         if not m:
-            website = "http://%s/" % website
+            website = "http://%s" % website
         # get html code of the website
         html = urlopen(website)
 
@@ -32,14 +36,16 @@ class WebsiteParser:
         soup = BeautifulSoup(html.read(), "html.parser")
 
         # count only in body
-        print(soup.body)
+
         buttons = len(soup.body.find_all('button'))
 
         regex = re.compile('submit|reset|button')
-        intputs = (len(soup.body.find_all('input', {'type': regex})))
+        intputs = len(soup.body.find_all('input', {'type': regex}))
 
         regex2 = re.compile('(?i).*btn.*|(?i).*button.*')
+
         other = len(soup.body.find_all('', {'class': regex2}))
+        print(soup.body.find_all('', {'class': regex2}))
 
         all_button_tags = buttons + intputs + other
         print(all_button_tags)
