@@ -35,18 +35,21 @@ class WebsiteParser:
     def soup_read(self, html):
         soup = BeautifulSoup(html.read(), "html.parser")
 
-        # count only in body
+        # tag list
 
-        buttons = len(soup.body.find_all('button'))
+        tag_list = soup.body.find_all('button')
 
         regex = re.compile('submit|reset|button')
-        intputs = len(soup.body.find_all('input', {'type': regex}))
+        tag_list2 = soup.body.find_all('input', {'type': regex})
 
         regex2 = re.compile('(?i).*btn.*|(?i).*button.*')
+        tag_list3 = soup.body.find_all('', {'class': regex2})
 
-        other = len(soup.body.find_all('', {'class': regex2}))
-        print(soup.body.find_all('', {'class': regex2}))
+        # all tags to one list, make it set in order to eliminate duplicates
+        all_tags = set(tag_list + tag_list2 + tag_list3)
 
-        all_button_tags = buttons + intputs + other
-        print(all_button_tags)
-        return all_button_tags
+        # print(soup.body.find_all('', {'class': regex2}))
+        print(all_tags)
+        all_button_num = len(all_tags)
+        print(all_button_num)
+        return all_button_num
