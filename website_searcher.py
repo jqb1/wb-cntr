@@ -29,11 +29,11 @@ class WebsiteParser:
 
         #count only in body
         print(soup.body)
-        print(len(soup.find_all('button')))
+        print(len(soup.body.find_all('button')))
 
         regex = re.compile('submit|reset|button')
-        print(len(soup.find_all('input', {'type': regex})))
+        print(len(soup.body.find_all('input', {'type': regex})))
 
         regex2 = re.compile('(?i).*btn.*|(?i).*button.*')
-        print(len(soup.find_all('', {'class': regex2})))
+        print(len(soup.body.find_all('', {'class': regex2})))
 
