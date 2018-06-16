@@ -25,7 +25,7 @@ class FileHandler:
         try:
             # fieldnames = sorted(list(set(k for d in websites_info for k in d)))
             fieldnames = ['address','tag_num']
-            print(fieldnames)
+
             with open(output_file, 'w',newline='') as csv_file:
                 writer = csv.DictWriter(csv_file,fieldnames=fieldnames)
                 writer.writeheader()
