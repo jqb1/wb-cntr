@@ -19,6 +19,16 @@ class FileHandler:
 
         return websites
 
-
-
-    # def make_output_filename(self,output_filename):
+    def make_output_file(self, websites_info):
+        print(websites_info)
+        output_file = self.output_filename
+        try:
+            # fieldnames = sorted(list(set(k for d in websites_info for k in d)))
+            fieldnames = ['address','tag_num']
+            print(fieldnames)
+            with open(output_file, 'w') as csv_file:
+                writer = csv.DictWriter(csv_file,fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(websites_info)
+        except IOError:
+            raise IOError('An Error occurred wile trying to write to a file.')
