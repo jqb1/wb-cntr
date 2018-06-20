@@ -26,4 +26,6 @@ def main():
 
     file_handler.make_output_file(websites_info)
 
-main()
+
+if __name__ == '__main__':
+    main()
