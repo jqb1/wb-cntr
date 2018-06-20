@@ -49,7 +49,5 @@ class WebsiteParser:
         all_tags = set(tag_list + tag_list2 + tag_list3)
 
         # print(soup.body.find_all('', {'class': regex2}))
-        print(all_tags)
         all_button_num = len(all_tags)
-        print(all_button_num)
         return all_button_num

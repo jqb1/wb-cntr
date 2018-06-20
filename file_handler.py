@@ -20,14 +20,16 @@ class FileHandler:
         return websites
 
     def make_output_file(self, websites_info):
-        print(websites_info)
+
         output_file = self.output_filename
+        for website in websites_info:
+            print("Address:%s" % website['address'], "Number of tags: %s" % website['tag_num'])
         try:
             # fieldnames = sorted(list(set(k for d in websites_info for k in d)))
-            fieldnames = ['address','tag_num']
+            fieldnames = ['address', 'tag_num']
 
-            with open(output_file, 'w',newline='') as csv_file:
-                writer = csv.DictWriter(csv_file,fieldnames=fieldnames)
+            with open(output_file, 'w', newline='') as csv_file:
+                writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerows(websites_info)
         except IOError:
